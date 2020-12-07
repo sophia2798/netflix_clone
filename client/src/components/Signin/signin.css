@@ -45,11 +45,12 @@
 }
 
 .signin-box {
-    min-height: 660px;
+    /* min-height: 660px; */
     padding: 60px 68px 40px;
     margin-bottom: 90px;
     background-color: rgba(0,0,0,0.75);
     font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
+    border-radius: 2px;
 }
 
 .login-body {
@@ -251,7 +252,7 @@
     width: 100%;
 }
 
-.select::before {
+/* .select::before {
     color: #999;
     top: 14px;
     content: '';
@@ -260,15 +261,16 @@
     position: absolute;
     pointer-events: none;
     left: 15px;
-}
+} */
 
 .select::after {
     color: #999;
     right: 10px;
-    top: 18px;
-    font-family: nf-icon;
-    font-size: 6px;
-    content: '\e898';
+    top: 11px;
+    font: inherit;
+    font-size: 15px;
+    content: '^';
+    transform: rotate(180deg);
     position: absolute;
     pointer-events: none;
 }
@@ -277,7 +279,7 @@
     text-indent: 0;
     padding: 12px;
     padding-right: 26px;
-    padding-left: 50px;
+    padding-left: 14px;
     line-height: 1.7;
     background-color: #000;
     background-image: none;
@@ -304,7 +306,7 @@
     color: #737373;
     font-size: 16px;
     font-weight: 500;
-    margin-top: 16px;
+    margin-top: 52px;
 }
 
 .login-info-content a {
