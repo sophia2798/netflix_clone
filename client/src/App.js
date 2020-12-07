@@ -3,15 +3,16 @@ import React, { useState } from "react";
 import Row from "./components/Row/row";
 import Banner from "./components/Banner/banner";
 import Navbar from "./components/Navbar/nav";
+import Signin from "./components/Signin/signin";
 import requests from "./utils/requests";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 function App() {
    return (
     <Router>
-      <Switch>
         <div className="app">
-          <Route expact path = "/">
+        <Switch>
+          <Route exact path = "/">
             <Navbar />
             <Banner />
             <Row title="Netflix Originals" fetchUrl={requests.fetchNetflixOriginals} isLargeRow/>
@@ -23,8 +24,11 @@ function App() {
             <Row title="Romance" fetchUrl={requests.fetchRomanceMovies}/>
             <Row title="Documentaries" fetchUrl={requests.fetchDocumentaries}/>
           </Route>
+          <Route path = "/signin">
+            <Signin/>
+          </Route>
+        </Switch>
         </div>
-      </Switch>
     </Router>
   );
 }
