@@ -72,24 +72,6 @@
     display: block;
 }
 
-.signin-footer {
-    margin-top: 0;
-    background: rgba(0,0,0,0.75);
-    min-width: 190px;
-    width: 100%;
-    padding-bottom: 20px;
-    font-size: 1em;
-    color: #757575;
-    position: relative;
-}
-
-.footer-content {
-    padding: 30px 0;
-    width: 90%;
-    margin: 0 auto;
-    max-width: 1000px;
-}
-
 .signin-box h1 {
     color: #fff;
     font-size: 32px;
@@ -144,7 +126,7 @@
     -moz-appearance: none;
     appearance: none;
     width: 100%;
-    color: #000;
+    color: white;
     padding: 16px 20px 0;
     height: 50px;
     background: 0 0;
@@ -168,4 +150,200 @@
     top: 7px;
     font-size: 11px;
     transform: translateY(0);
+}
+
+.signin-btn {
+    padding: 16px;
+    background: #e50914;
+    display: inline-block;
+    min-width: 98px;
+    min-height: 37px;
+    line-height: 1em;
+    color: #fff;
+    border: 0;
+    text-transform: none;
+    font: inherit;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 700;
+    margin: 24px 0 12px;
+    width: 100%;
+    max-width: 100%;
+}
+
+.signin-footer {
+    margin-top: 0;
+    background: rgba(0,0,0,0.75);
+    min-width: 190px;
+    width: 100%;
+    padding-bottom: 20px;
+    font-size: 1em;
+    color: #757575;
+    position: relative;
+    font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
+}
+
+.footer-content {
+    padding: 30px 0;
+    width: 90%;
+    margin: 0 auto;
+    max-width: 1000px;
+}
+
+.footer-top {
+    color: #757575;
+    padding: 0;
+    margin: 0 0 30px;
+}
+
+.footer-links {
+    padding: 0;
+    margin: 0;
+    max-width: 1000px;
+    font-size: 13px;
+    box-sizing: border-box;
+    color: #757575;
+}
+
+.footer-link-item {
+    list-style: none;
+    margin-left: 0;
+    box-sizing: border-box;
+    padding: 0;
+    margin-bottom: 16px;
+    display: inline-block;
+    min-width: 100px;
+    width: 25%;
+    padding-right: 12px;
+    vertical-align: top;
+    text-align: -webkit-match-parent;
+    font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
+}
+
+.footer-link {
+    background-color: transparent;
+    text-decoration: none;
+    color: #757575;
+}
+
+.footer-link:hover {
+    text-decoration: underline;
+}
+
+.lang-selection {
+    margin-top: 20px
+}
+
+.picker {
+    border: none;
+    width: auto;
+    display: inline-block;
+    position: relative;
+    max-width: 600px;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+}
+
+.select {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.select::before {
+    color: #999;
+    top: 14px;
+    content: '';
+    font-family: "nf-icon";
+    font-size: 16px;
+    position: absolute;
+    pointer-events: none;
+    left: 15px;
+}
+
+.select::after {
+    color: #999;
+    right: 10px;
+    top: 18px;
+    font-family: nf-icon;
+    font-size: 6px;
+    content: '\e898';
+    position: absolute;
+    pointer-events: none;
+}
+
+.lang-select {
+    text-indent: 0;
+    padding: 12px;
+    padding-right: 26px;
+    padding-left: 50px;
+    line-height: 1.7;
+    background-color: #000;
+    background-image: none;
+    border: 1px solid #333;
+    border-radius: 2px;
+    width: 100%;
+    text-transform: none;
+    color: inherit;
+    font: inherit;
+    margin: 0;
+    font-size: 13px;
+    appearance: none;
+}
+
+.login-info {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 1;
+    -moz-box-flex: 0;
+    -ms-flex: 0 0 1;
+    flex: 0 0 1;
+}
+
+.login-info-content {
+    color: #737373;
+    font-size: 16px;
+    font-weight: 500;
+    margin-top: 16px;
+}
+
+.login-info-content a {
+    color: #fff;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+.login-info-content p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+#fake-learn {
+    background-color: transparent;
+    border: none;
+    color: #0071eb;
+    cursor: pointer;
+    display: inline;
+    font-family: inherit;
+    font-size: inherit;
+    padding: 0;
+}
+
+.terms, .disclosure {
+    margin-top: 11px;
+    font-size: 13px;
+    color: #8c8c8c;
+    position: relative;
+    text-align: left;
+}
+
+.disclosure-link {
+    color: #0071eb !important;
+}
+
+.disclosure {
+    transition: height .5s ease,opacity .5s ease;
 }

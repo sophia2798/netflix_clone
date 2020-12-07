@@ -1,7 +1,9 @@
 import React from 'react';
 import "./signin.css";
 
-function signin() {
+function Signin() {
+    const [opacity, setOpacity] = React.useState(false);
+
     return (
         <div className="signin">
             <div className="login-background">
@@ -42,16 +44,62 @@ function signin() {
                             </div>
                             <input type="submit" className="signin-btn" value="Sign In"/>
                         </form>
+                        <div className="login-info">
+                            <div className="login-info-content">
+                                New to Netflix? &nbsp;
+                                <a href="#" alt="sign up link">Sign up now</a>
+                                <div className="terms">
+                                <p><span>This page is protected by Google reCAPTCHA to ensure you're not a bot.</span>&nbsp;<button onClick={() => setOpacity(!opacity)} style={!opacity ? {opacity: '1'} : {opacity: '0'}} id="fake-learn">Learn more.</button></p>
+                                </div>
+                                <div className="disclosure" style={opacity ? {opacity: '1'} : {opacity: '0'}}>
+                                    <span className="disclosure-text">
+                                        The information collected by Google reCAPTCHA is subject to the Google <a href="https://policies.google.com/privacy" alt="policies link" className="disclosure-link">Privacy Policy</a> and <a href="https://policies.google.com/terms" alt="terms link" className="disclosure-link">Terms of Service</a>, and is used for providing, maintaining, and improving the reCAPTCHA service and for general security purposes (it is not used for personalized advertising by Google).
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
             <footer className="signin-footer">
                 <div className="footer-content">
-
+                    <p className="footer-top">
+                        Questions? Call 1-844-505-2993
+                    </p>
+                    <ul className="footer-links">
+                        <li className="footer-link-item">
+                            <a className="footer-link" href="#" alt="footer link">FAQ</a>
+                        </li>
+                        <li className="footer-link-item">
+                            <a className="footer-link" href="#" alt="footer link">Help Center</a>
+                        </li>
+                        <li className="footer-link-item">
+                            <a className="footer-link" href="#" alt="footer link">Terms of Use</a>
+                        </li>
+                        <li className="footer-link-item">
+                            <a className="footer-link" href="#" alt="footer link">Privacy</a>
+                        </li>
+                        <li className="footer-link-item">
+                            <a className="footer-link" href="#" alt="footer link">Cookie Preferences</a>
+                        </li>
+                        <li className="footer-link-item">
+                            <a className="footer-link" href="#" alt="footer link">Corporate Information</a>
+                        </li>
+                    </ul>
+                    <div className="lang-selection">
+                        <div className="picker">
+                            <div className="select">
+                                <select className="lang-select">
+                                    <option selected value = "/" data-language="en" data-country="US">English</option>
+                                    <option selected value = "/us-es/" data-language="es" data-country="US">Español</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </footer>
         </div>
     )
 }
 
-export default signin
+export default Signin
