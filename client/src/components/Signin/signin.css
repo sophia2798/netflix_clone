@@ -266,7 +266,7 @@
 .select::after {
     color: #999;
     right: 10px;
-    top: 11px;
+    top: 10px;
     font: inherit;
     font-size: 15px;
     content: '^';
