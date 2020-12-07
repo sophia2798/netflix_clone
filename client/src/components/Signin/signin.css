@@ -147,7 +147,7 @@
     transform: translateY(-50%);
 }
 
-.password:focus+.label1, .email:focus+.label1 {
+.password:focus+.label1, .email:focus+.label1, .hasText+.label1 {
     top: 7px;
     font-size: 11px;
     transform: translateY(0);

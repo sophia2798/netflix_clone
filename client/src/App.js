@@ -8,6 +8,82 @@ import requests from "./utils/requests";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 function App() {
+  const [formState, setFormState] = useState({
+    email: "",
+    password: ""
+});
+const [profileState, setProfileState] = useState({
+    email: "",
+    token: "",
+    id: "",
+    isLoggedIn: false
+});
+
+const API = {
+    getProfile: function(token) {
+        return fetch("/api/users/protected", {
+            "authorization": `Bearer ${token}`
+        }).then(res => res.json()).catch(err => null)
+    },
+    login: function(userData) {
+        return fetch("/api/users/login", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(userData)
+        }).then(res => res.json()).catch(err => null)
+    }
+};
+
+function fetchUserData() {
+    const token = localStorage.getItem("token");
+    API.getProfile(token).then(profileData => {
+        if (profileData) {
+            setProfileState({
+                email: profileData.email,
+                token: token,
+                id: profileData.id,
+                isLoggedIn: true
+            })
+        } else {
+            localStorage.removeItem("token");
+            setProfileState({
+                email: "",
+                token: "",
+                id: "",
+                isLoggedIn: false
+            })
+        }
+    })
+};
+
+const inputChange = event => {
+    const { name, value } = event.target;
+    setFormState({
+        ...formState,
+        [name]: value
+    });
+};
+
+const formSubmit = event => {
+    event.preventDefault();
+    API.login(formState).then(newToken => {
+        localStorage.setItem("token", newToken.token)
+        API.getProfile(newToken.token).then(profileData => {
+            setProfileState({
+                email: profileData.email,
+                id: profileData.id,
+                isLoggedIn: true
+            });
+            setFormState({
+                email: "",
+                password: ""
+            })
+        })
+    })
+};
+
    return (
     <Router>
         <div className="app">
@@ -25,7 +101,11 @@ function App() {
             <Row title="Documentaries" fetchUrl={requests.fetchDocumentaries}/>
           </Route>
           <Route path = "/signin">
-            <Signin/>
+            <Signin
+              formSubmit = {formSubmit}
+              inputChange = {inputChange}
+              formState = {formState}
+            />
           </Route>
         </Switch>
         </div>

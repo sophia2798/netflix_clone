@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import "./signin.css";
+import axios from "axios";
 
-function Signin() {
-    const [opacity, setOpacity] = React.useState(false);
+function Signin(props) {
+    const [opacity, setOpacity] = useState(false);
+    const [hasTextEmail, setHasTextEmail] = useState(false);
+    const [hasTextPassword, setHasTextPassword] = useState(false);
 
     return (
         <div className="signin">
@@ -21,12 +24,12 @@ function Signin() {
                 <div style={{height: 660, width: 450}}>
                     <div className="signin-box">
                         <h1>Sign In</h1>
-                        <form className="signin-form">
+                        <form className="signin-form" onSubmit={props.formSubmit}>
                         <div className="input-container">
                                 <div className="placement">
                                     <div className="controls">
                                         <label className="input-id">
-                                            <input type="test" id="email" className="password"/>
+                                            <input onChange={props.inputChange} type="test" id="email" className={`email ${props.formState.email.length > 0 ? 'hasText' : null}`} name="email" value={props.formState.email}/>
                                             <label className="label1" htmlFor="email">Email or phone number</label>
                                         </label>
                                     </div>
@@ -36,7 +39,7 @@ function Signin() {
                                 <div className="placement">
                                     <div className="controls">
                                         <label className="input-id">
-                                            <input type="password" id="password" className="password"/>
+                                            <input onChange={props.inputChange} type="password" id="password" className={`password ${props.formState.password.length > 0 ? 'hasText' : null}`} name="password" value={props.formState.password}/>
                                             <label className="label1" htmlFor="password">Password</label>
                                         </label>
                                     </div>
