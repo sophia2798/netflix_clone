@@ -1,11 +1,11 @@
 import './App.css';
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Row from "./components/Row/row";
 import Banner from "./components/Banner/banner";
 import Navbar from "./components/Navbar/nav";
 import Signin from "./components/Signin/signin";
 import requests from "./utils/requests";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 
 function App() {
   const [formState, setFormState] = useState({
@@ -22,7 +22,9 @@ const [profileState, setProfileState] = useState({
 const API = {
     getProfile: function(token) {
         return fetch("/api/users/protected", {
+          headers: {
             "authorization": `Bearer ${token}`
+          }
         }).then(res => res.json()).catch(err => null)
     },
     login: function(userData) {
@@ -84,11 +86,18 @@ const formSubmit = event => {
     })
 };
 
+useEffect(fetchUserData, []);
+
    return (
     <Router>
         <div className="app">
         <Switch>
           <Route exact path = "/">
+            <Redirect to = "signin"/>
+          </Route>
+          <Route path = "/browse">
+            {profileState.isLoggedIn ? (
+            <div>
             <Navbar />
             <Banner />
             <Row title="Netflix Originals" fetchUrl={requests.fetchNetflixOriginals} isLargeRow/>
@@ -99,13 +108,21 @@ const formSubmit = event => {
             <Row title="Horror" fetchUrl={requests.fetchHorrorMovies}/>
             <Row title="Romance" fetchUrl={requests.fetchRomanceMovies}/>
             <Row title="Documentaries" fetchUrl={requests.fetchDocumentaries}/>
+            </div>              
+            ):(
+            <Redirect to = "/signin"/>
+            )}
           </Route>
           <Route path = "/signin">
-            <Signin
+            {profileState.isLoggedIn ? (
+              <Redirect to = "/browse"/>
+            ):(
+              <Signin
               formSubmit = {formSubmit}
               inputChange = {inputChange}
               formState = {formState}
             />
+            )}
           </Route>
         </Switch>
         </div>

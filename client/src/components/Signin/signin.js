@@ -94,7 +94,7 @@ function Signin(props) {
                             <div className="select">
                                 <select className="lang-select">
                                     <option selected value = "/" data-language="en" data-country="US">English</option>
-                                    <option selected value = "/us-es/" data-language="es" data-country="US">Español</option>
+                                    <option value = "/us-es/" data-language="es" data-country="US">Español</option>
                                 </select>
                             </div>
                         </div>
