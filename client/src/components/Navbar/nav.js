@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import "./nav.css";
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
 
-function Navbar() {
+function Navbar(props) {
     const [show, handleShow] = useState(false);
+    const [dropdown, setDropdown] = useState(false);
 
     useEffect(() => {
         window.addEventListener("scroll", () => {
@@ -11,7 +14,7 @@ function Navbar() {
             } else handleShow(false);
         });
         return () => {
-            window.removeEventListener("scroll");
+            window.removeEventListener("scroll", function() {});
         }
     }, []);
 
@@ -23,11 +26,29 @@ function Navbar() {
                 alt="Netflix Logo"
             />
 
+            <div className="nav-right" onMouseEnter={() => setDropdown(true)} onMouseLeave={() => setDropdown(false)}>
             <img
                 className="nav_avatar"
                 src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/366be133850498.56ba69ac36858.png"
                 alt="Profile Icon"
             />
+            <ArrowDropDownIcon id="down-arrow" style={{color: 'white'}}/>
+            </div>
+            <div className="dropdown" style={dropdown ? {display:'block'} : {display:'none'}} onMouseEnter={() => setDropdown(true)} onMouseLeave={() => setDropdown(false)} >
+                <ArrowDropUpIcon id="arrow-up" />
+                <div className="dropdown-container">
+                    <div className="dropdown-header">
+                        <img
+                            className="dropdown-avatar"
+                            src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/366be133850498.56ba69ac36858.png"
+                            alt="Profile Icon"
+                        />
+                        <p>{props.email}</p>
+                    </div>
+                    <hr id="dropdown-hr"/>
+                    <p onClick={() => props.logout()} className="sign-out">Sign out of Netflix</p>
+                </div>
+            </div>
         </div>
     )
 }

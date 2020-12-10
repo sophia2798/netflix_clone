@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import "./signin.css";
-import axios from "axios";
+import "./Signup.css";
 import { Link } from "react-router-dom";
 
-function Signin(props) {
+function Signup(props) {
     const [opacity, setOpacity] = useState(false);
-    const [hasTextEmail, setHasTextEmail] = useState(false);
-    const [hasTextPassword, setHasTextPassword] = useState(false);
 
     return (
-        <div className="signin">
+        <div className="signup">
             <div className="login-background">
             </div>
             <header className="signin-header">
@@ -24,7 +21,7 @@ function Signin(props) {
             <section className="login-body">
                 <div style={{height: 660, width: 450}}>
                     <div className="signin-box">
-                        <h1>Sign In</h1>
+                        <h1>Sign Up</h1>
                         <form className="signin-form" onSubmit={props.formSubmit}>
                         <div className="input-container">
                                 <div className="placement">
@@ -46,12 +43,13 @@ function Signin(props) {
                                     </div>
                                 </div>
                             </div>
-                            <input type="submit" className="signin-btn" value="Sign In"/>
+                            <input type="submit" className="signin-btn" value="Sign Up"/>
                         </form>
+                        <p style={props.success ? {display:'block'} : {display:'none'} } id="success">Sign up successful! Use the link below to access the Sign In page and use your new account!</p>
                         <div className="login-info">
                             <div className="login-info-content">
-                                New to Netflix? &nbsp;
-                                <Link to="/signup" alt="sign up link">Sign up now</Link>
+                                Already have an account? &nbsp;
+                                <Link to="/signin" alt="sign up link">Sign in now</Link>
                                 <div className="terms">
                                 <p><span>This page is protected by Google reCAPTCHA to ensure you're not a bot.</span>&nbsp;<button onClick={() => setOpacity(!opacity)} style={!opacity ? {opacity: '1'} : {opacity: '0'}} id="fake-learn">Learn more.</button></p>
                                 </div>
@@ -106,4 +104,4 @@ function Signin(props) {
     )
 }
 
-export default Signin
+export default Signup

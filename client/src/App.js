@@ -4,6 +4,7 @@ import Row from "./components/Row/row";
 import Banner from "./components/Banner/banner";
 import Navbar from "./components/Navbar/nav";
 import Signin from "./components/Signin/signin";
+import Signup from "./components/Signup/Signup";
 import requests from "./utils/requests";
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 
@@ -18,6 +19,7 @@ const [profileState, setProfileState] = useState({
     id: "",
     isLoggedIn: false
 });
+const [success, setSuccess] = useState(false);
 
 const API = {
     getProfile: function(token) {
@@ -35,6 +37,15 @@ const API = {
             },
             body: JSON.stringify(userData)
         }).then(res => res.json()).catch(err => null)
+    },
+    signup: function(userData) {
+      return fetch("/api/users/", {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(userData)
+      }).then(res => res.json()).catch(err => null)
     }
 };
 
@@ -86,6 +97,27 @@ const formSubmit = event => {
     })
 };
 
+const formSignupSubmit = event => {
+  event.preventDefault();
+  API.signup(formState).then(newAccount => {
+    setFormState({
+      email: "",
+      password: ""
+    });
+    setSuccess(true);
+  })
+};
+
+const logout = () => {
+  localStorage.removeItem("token");
+  setProfileState({
+    email: "",
+    token: "",
+    id: "",
+    isLoggedIn: false
+  })
+};
+
 useEffect(fetchUserData, []);
 
    return (
@@ -98,7 +130,10 @@ useEffect(fetchUserData, []);
           <Route path = "/browse">
             {profileState.isLoggedIn ? (
             <div>
-            <Navbar />
+            <Navbar
+              logout = {logout}
+              email = {profileState.email}
+            />
             <Banner />
             <Row title="Netflix Originals" fetchUrl={requests.fetchNetflixOriginals} isLargeRow/>
             <Row title="Trending Now" fetchUrl={requests.fetchTrending}/>
@@ -121,6 +156,18 @@ useEffect(fetchUserData, []);
               formSubmit = {formSubmit}
               inputChange = {inputChange}
               formState = {formState}
+            />
+            )}
+          </Route>
+          <Route path = "/signup">
+          {profileState.isLoggedIn ? (
+              <Redirect to = "/browse"/>
+            ):(
+              <Signup
+              formSubmit = {formSignupSubmit}
+              inputChange = {inputChange}
+              formState = {formState}
+              success = {success}
             />
             )}
           </Route>
