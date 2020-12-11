@@ -115,7 +115,8 @@ const logout = () => {
     token: "",
     id: "",
     isLoggedIn: false
-  })
+  });
+  setSuccess(false);
 };
 
 useEffect(fetchUserData, []);
